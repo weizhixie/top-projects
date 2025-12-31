@@ -17,3 +17,6 @@ console.log(list.tail());
 console.log(list.at(-3));
 console.log(list.at(3));
 console.log(list.at(50));
+console.log(list.pop());
+
+
