@@ -19,4 +19,4 @@ console.log(list.at(3));
 console.log(list.at(50));
 console.log(list.pop());
 
-
+console.log(list.contains("cat"));

@@ -72,4 +72,18 @@ export class LinkedList {
     this.headNode = this.headNode.nextNode;
     return value;
   }
+
+  contains(value) {
+    let temp = this.headNode;
+    while (temp !== null) {
+      if (temp.value === value) return true;
+      temp = temp.nextNode;
+    }
+
+    return false;
+  }
+
+  // findIndex(value) {}
+
+  // toString() {}
 }
