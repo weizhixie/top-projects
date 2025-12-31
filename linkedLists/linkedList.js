@@ -32,4 +32,20 @@ export class LinkedList {
 
     return length;
   }
+
+  head() {
+    return this.headNode ? this.headNode.value : undefined;
+  }
+
+  tail() {
+    if (this.headNode === null) {
+      return undefined;
+    } else {
+      let temp = this.headNode;
+      while (temp.nextNode !== null) {
+        temp = temp.nextNode;
+      }
+      return temp.value;
+    }
+  }
 }
