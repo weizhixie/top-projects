@@ -16,4 +16,8 @@ export class LinkedList {
       temp.nextNode = new Node(value);
     }
   }
+
+  prepend(value) {
+    this.headNode = new Node(value, this.headNode);
+  }
 }
