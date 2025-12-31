@@ -20,4 +20,16 @@ export class LinkedList {
   prepend(value) {
     this.headNode = new Node(value, this.headNode);
   }
+
+  size() {
+    let length = 0;
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      length++;
+      temp = temp.nextNode;
+    }
+
+    return length;
+  }
 }
