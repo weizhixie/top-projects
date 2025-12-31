@@ -48,4 +48,20 @@ export class LinkedList {
       return temp.value;
     }
   }
+
+  at(index) {
+    if (index < 0 || this.headNode === null) return undefined;
+
+    let counter = 0;
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      if (index === counter) return temp.value;
+
+      counter++;
+      temp = temp.nextNode;
+    }
+
+    return undefined;
+  }
 }
