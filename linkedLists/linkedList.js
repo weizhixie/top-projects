@@ -172,4 +172,32 @@ export class LinkedList {
       throw new RangeError(`Index must be less than or equal to ${counter}`);
     }
   }
+
+  removeAt(index) {
+    if (index < 0) throw new RangeError("Index must be non-negative");
+    if (this.headNode === null) throw new Error("Cannot delete list is empty");
+    if (index === 0) {
+      this.headNode = this.headNode.nextNode;
+      return;
+    }
+
+    let counter = 0;
+    let temp = this.headNode;
+    let prev = null;
+
+    while (temp !== null) {
+      if (index === counter) {
+        prev.nextNode = temp.nextNode;
+        return;
+      }
+
+      counter++;
+      prev = temp;
+      temp = temp.nextNode;
+    }
+
+    if (index >= counter) {
+      throw new RangeError(`Index must be less than ${counter}`);
+    }
+  }
 }
