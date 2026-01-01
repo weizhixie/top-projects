@@ -110,4 +110,66 @@ export class LinkedList {
     str += "null";
     return str;
   }
+
+  insertAt(index, ...values) {
+    if (values.length === 0) return;
+    if (index < 0) throw new RangeError("Index must be non-negative");
+
+    if (this.headNode === null && index === 0) {
+      values.forEach((value) => this.append(value));
+      return;
+    }
+
+    let counter = 0;
+    let temp = this.headNode;
+    let prev = null;
+
+    const createMiniList = (values) => {
+      let miniHead = null;
+      let miniTail = null;
+
+      values.forEach((value) => {
+        if (miniHead === null) {
+          miniHead = new Node(value);
+          miniTail = miniHead;
+        } else {
+          miniTail.nextNode = new Node(value);
+          miniTail = miniTail.nextNode;
+        }
+      });
+
+      return { miniHead, miniTail };
+    };
+
+    if (index === 0) {
+      const { miniHead, miniTail } = createMiniList(values);
+      miniTail.nextNode = this.headNode;
+      this.headNode = miniHead;
+      return;
+    }
+
+    while (temp !== null) {
+      if (index === counter) {
+        const { miniHead, miniTail } = createMiniList(values);
+        miniTail.nextNode = temp;
+        prev.nextNode = miniHead;
+        return;
+      }
+
+      counter++;
+      prev = temp;
+      temp = temp.nextNode;
+    }
+
+    //check after while loop, ensure to append the list insert at the end of the list
+    if (index === counter) {
+      const { miniHead } = createMiniList(values);
+      prev.nextNode = miniHead;
+      return;
+    }
+
+    if (index > counter) {
+      throw new RangeError(`Index must be less than or equal to ${counter}`);
+    }
+  }
 }
