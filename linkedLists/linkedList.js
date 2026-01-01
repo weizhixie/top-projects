@@ -95,4 +95,19 @@ export class LinkedList {
 
     return -1;
   }
+
+  toString() {
+    if (this.headNode === null) return "";
+
+    let str = "";
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      str += `( ${temp.value} ) -> `;
+      temp = temp.nextNode;
+    }
+
+    str += "null";
+    return str;
+  }
 }
