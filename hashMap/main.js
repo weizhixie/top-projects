@@ -18,3 +18,4 @@ test.set("lion", "golden");
 test.set("elephant", "new value");
 
 console.log(test);
+console.log(test.get("elephant"));
