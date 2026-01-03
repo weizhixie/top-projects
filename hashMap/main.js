@@ -19,3 +19,4 @@ test.set("elephant", "new value");
 
 console.log(test);
 console.log(test.get("elephant"));
+console.log(test.has("lion"));

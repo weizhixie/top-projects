@@ -48,13 +48,20 @@ export class HashMap {
   }
 
   get(key) {
-    if (!key) return null;
-
     const bucket = this.getBucket(key);
     if (bucket.length === 0) return null;
 
     const found = bucket[0].findKey(key);
 
     return found ? found.value : null;
+  }
+
+  has(key) {
+    const bucket = this.getBucket(key);
+    if (bucket.length === 0) return false;
+
+    const found = bucket[0].findKey(key);
+
+    return found ? true : false;
   }
 }
