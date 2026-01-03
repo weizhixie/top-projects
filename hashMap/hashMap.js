@@ -1,3 +1,5 @@
+import { LinkedList } from "./linkedList.js";
+
 export class HashMap {
   constructor() {
     this.capacity = 16;
@@ -29,13 +31,19 @@ export class HashMap {
   set(key, value) {
     const bucket = this.getBucket(key);
 
-    for (const item of bucket) {
-      if (item.key === key) {
-        item.value = value;
+    if (bucket.length === 0) {
+      const list = new LinkedList();
+      bucket.push(list);
+      list.append({ key, value });
+    } else {
+      const keyExists = bucket[0].findKey(key);
+      if (keyExists) {
+        keyExists.value = value;
+        return;
+      } else {
+        bucket[0].append({ key, value });
         return;
       }
     }
-
-    bucket.push({ key, value });
   }
 }
