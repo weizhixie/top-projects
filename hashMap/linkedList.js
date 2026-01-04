@@ -53,4 +53,15 @@ export class LinkedList {
 
     return false;
   }
+
+  size() {
+    let length = 0;
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      length++;
+      temp = temp.nextNode;
+    }
+    return length;
+  }
 }

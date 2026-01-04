@@ -76,4 +76,16 @@ export class HashMap {
 
     return result;
   }
+
+  length() {
+    let count = 0;
+
+    for (const bucket of this.buckets) {
+      if (bucket[0]) {
+        count += bucket[0].size();
+      }
+    }
+
+    return count;
+  }
 }
