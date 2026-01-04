@@ -66,26 +66,38 @@ export class LinkedList {
   }
 
   getKeys() {
-    const key = [];
+    const keys = [];
     let temp = this.headNode;
 
     while (temp !== null) {
-      key.push(temp.value.key);
+      keys.push(temp.value.key);
       temp = temp.nextNode;
     }
 
-    return key;
+    return keys;
   }
 
   getValues() {
-    const value = [];
+    const values = [];
     let temp = this.headNode;
 
     while (temp !== null) {
-      value.push(temp.value.value);
+      values.push(temp.value.value);
       temp = temp.nextNode;
     }
 
-    return value;
+    return values;
+  }
+
+  getEntries() {
+    const entries = [];
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      entries.push([temp.value.key, temp.value.value]);
+      temp = temp.nextNode;
+    }
+
+    return entries;
   }
 }

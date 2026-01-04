@@ -117,4 +117,16 @@ export class HashMap {
 
     return result;
   }
+
+  entries() {
+    const result = [];
+
+    for (const bucket of this.buckets) {
+      if (bucket[0]) {
+        result.push(...bucket[0].getEntries());
+      }
+    }
+
+    return result;
+  }
 }
