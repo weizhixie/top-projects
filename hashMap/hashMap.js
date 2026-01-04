@@ -42,7 +42,22 @@ export class HashMap {
         return;
       } else {
         bucket[0].append({ key, value });
-        return;
+      }
+    }
+    this.resize();
+  }
+
+  resize() {
+    const loadLevel = this.capacity * this.loadFactor;
+
+    if (this.length() > loadLevel) {
+      const oldEntries = this.entries();
+
+      this.capacity *= 2;
+      this.buckets = Array.from({ length: this.capacity }, () => []);
+
+      for (const [key, value] of oldEntries) {
+        this.set(key, value);
       }
     }
   }
@@ -90,8 +105,8 @@ export class HashMap {
   }
 
   clear() {
-    this.buckets = Array.from({ length: this.capacity }, () => []);
     this.capacity = 16;
+    this.buckets = Array.from({ length: this.capacity }, () => []);
   }
 
   keys() {

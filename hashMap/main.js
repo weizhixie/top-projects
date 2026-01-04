@@ -15,8 +15,6 @@ test.set("jacket", "blue");
 test.set("kite", "pink");
 test.set("lion", "golden");
 
-test.set("elephant", "new value");
+test.set("moon", "silver");
 
 console.log(test);
-console.log(test.get("elephant"));
-console.log(test.has("lion"));
