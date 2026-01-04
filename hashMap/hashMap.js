@@ -5,6 +5,7 @@ export class HashMap {
     this.capacity = 16;
     this.loadFactor = 0.75;
     this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.count = 0;
   }
 
   hash(key) {
@@ -35,6 +36,7 @@ export class HashMap {
       const list = new LinkedList();
       bucket.push(list);
       list.append({ key, value });
+      this.count++;
     } else {
       const keyExists = bucket[0].findKey(key);
       if (keyExists) {
@@ -42,6 +44,7 @@ export class HashMap {
         return;
       } else {
         bucket[0].append({ key, value });
+        this.count++;
       }
     }
     this.resize();
@@ -50,11 +53,12 @@ export class HashMap {
   resize() {
     const loadLevel = this.capacity * this.loadFactor;
 
-    if (this.length() > loadLevel) {
+    if (this.count > loadLevel) {
       const oldEntries = this.entries();
 
       this.capacity *= 2;
       this.buckets = Array.from({ length: this.capacity }, () => []);
+      this.count = 0;
 
       for (const [key, value] of oldEntries) {
         this.set(key, value);
@@ -85,28 +89,24 @@ export class HashMap {
     if (bucket.length === 0) return false;
 
     const result = bucket[0].remove(key);
-    if (result && bucket[0].headNode === null) {
-      bucket.length = 0;
+    if (result) {
+      this.count--;
+      if (bucket[0].headNode === null) {
+        bucket.length = 0;
+      }
     }
 
     return result;
   }
 
   length() {
-    let count = 0;
-
-    for (const bucket of this.buckets) {
-      if (bucket[0]) {
-        count += bucket[0].size();
-      }
-    }
-
-    return count;
+    return this.count;
   }
 
   clear() {
     this.capacity = 16;
     this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.count = 0;
   }
 
   keys() {
