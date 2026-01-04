@@ -25,6 +25,32 @@ export class LinkedList {
       temp = temp.nextNode;
     }
 
-    return undefined;
+    return null;
+  }
+
+  head() {
+    return this.headNode ? this.headNode.value : null;
+  }
+
+  remove(key) {
+    if (this.head().key === key) {
+      this.headNode = this.headNode.nextNode;
+      return true;
+    }
+
+    let curr = this.headNode;
+    let prev = null;
+
+    while (curr !== null) {
+      if (curr.value.key === key) {
+        prev.nextNode = curr.nextNode;
+        return true;
+      }
+
+      prev = curr;
+      curr = curr.nextNode;
+    }
+
+    return false;
   }
 }

@@ -64,4 +64,16 @@ export class HashMap {
 
     return found ? true : false;
   }
+
+  remove(key) {
+    const bucket = this.getBucket(key);
+    if (bucket.length === 0) return false;
+
+    const result = bucket[0].remove(key);
+    if (result && bucket[0].headNode === null) {
+      bucket.length = 0;
+    }
+
+    return result;
+  }
 }
