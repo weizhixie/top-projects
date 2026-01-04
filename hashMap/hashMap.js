@@ -93,4 +93,16 @@ export class HashMap {
     this.buckets = Array.from({ length: this.capacity }, () => []);
     this.capacity = 16;
   }
+
+  keys() {
+    const result = [];
+
+    for (const bucket of this.buckets) {
+      if (bucket[0]) {
+        result.push(...bucket[0].getKeys());
+      }
+    }
+
+    return result;
+  }
 }

@@ -64,4 +64,16 @@ export class LinkedList {
     }
     return length;
   }
+
+  getKeys() {
+    const key = [];
+    let temp = this.headNode;
+
+    while (temp !== null) {
+      key.push(temp.value.key);
+      temp = temp.nextNode;
+    }
+
+    return key;
+  }
 }
