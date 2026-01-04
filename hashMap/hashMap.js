@@ -88,4 +88,9 @@ export class HashMap {
 
     return count;
   }
+
+  clear() {
+    this.buckets = Array.from({ length: this.capacity }, () => []);
+    this.capacity = 16;
+  }
 }
