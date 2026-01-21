@@ -1,7 +1,7 @@
-class Node {
-  constructor(data = null, leftTree = null, rightTree = null) {
+export class Node {
+  constructor(data = null) {
     this.data = data;
-    this.leftTree = leftTree;
-    this.rightTree = rightTree;
+    this.leftTree = null;
+    this.rightTree = null;
   }
 }
