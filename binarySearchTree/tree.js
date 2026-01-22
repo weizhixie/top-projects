@@ -21,8 +21,8 @@ export class Tree {
     const middle = Math.floor((start + end) / 2);
     const root = new Node(array[middle]);
 
-    root.leftTree = this.buildTreeRecur(array, start, middle - 1);
-    root.rightTree = this.buildTreeRecur(array, middle + 1, end);
+    root.left = this.buildTreeRecur(array, start, middle - 1);
+    root.right = this.buildTreeRecur(array, middle + 1, end);
 
     return root;
   }
