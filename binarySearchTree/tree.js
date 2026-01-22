@@ -26,4 +26,42 @@ export class Tree {
 
     return root;
   }
+
+  insert(value) {
+    if (this.root === null) return (this.root = new Node(value));
+
+    let currentNode = this.root;
+    while (currentNode !== null) {
+      if (value === currentNode.data) return currentNode;
+
+      if (value > currentNode.data) {
+        if (currentNode.right === null) {
+          return (currentNode.right = new Node(value));
+        }
+        currentNode = currentNode.right;
+      } else {
+        if (currentNode.left === null) {
+          return (currentNode.left = new Node(value));
+        }
+        currentNode = currentNode.left;
+      }
+    }
+    return null;
+  }
+
+  insertUsingRecursion(value, root = this.root) {
+    //check if the tree is empty
+    if (this.root === null) return (this.root = new Node(value));
+    //find empty left/right spot and create a new node as a new leaf
+    if (root === null) return new Node(value);
+    if (value === root.data) return root;
+
+    if (value > root.data) {
+      root.right = this.insertUsingRecursion(value, root.right);
+    } else {
+      root.left = this.insertUsingRecursion(value, root.left);
+    }
+
+    return root;
+  }
 }
