@@ -64,4 +64,31 @@ export class Tree {
 
     return root;
   }
+
+  deleteItem(value, root = this.root) {
+    if (root === null) return root;
+
+    if (value > root.data) {
+      root.right = this.deleteItem(value, root.right);
+    } else if (value < root.data) {
+      root.left = this.deleteItem(value, root.left);
+    } else {
+      //Node with 2 children
+      if (root.left !== null && root.right !== null) {
+        let inorderSuccessor = root.right;
+        while (inorderSuccessor.left !== null) {
+          inorderSuccessor = inorderSuccessor.left;
+        }
+
+        root.data = inorderSuccessor.data;
+        root.right = this.deleteItem(inorderSuccessor.data, root.right);
+        return root;
+      }
+
+      // Node with 1 or 0 children
+      return root.left ?? root.right;
+    }
+
+    return root;
+  }
 }
