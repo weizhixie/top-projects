@@ -30,20 +30,20 @@ export class Tree {
   insert(value) {
     if (this.root === null) return (this.root = new Node(value));
 
-    let currentNode = this.root;
-    while (currentNode !== null) {
-      if (value === currentNode.data) return currentNode;
+    let root = this.root;
+    while (root !== null) {
+      if (value === root.data) return root;
 
-      if (value > currentNode.data) {
-        if (currentNode.right === null) {
-          return (currentNode.right = new Node(value));
+      if (value > root.data) {
+        if (root.right === null) {
+          return (root.right = new Node(value));
         }
-        currentNode = currentNode.right;
+        root = root.right;
       } else {
-        if (currentNode.left === null) {
-          return (currentNode.left = new Node(value));
+        if (root.left === null) {
+          return (root.left = new Node(value));
         }
-        currentNode = currentNode.left;
+        root = root.left;
       }
     }
     return null;
@@ -90,5 +90,17 @@ export class Tree {
     }
 
     return root;
+  }
+
+  find(value, root = this.root) {
+    if (root === null) return null;
+
+    if (value === root.data) return root;
+
+    if (value > root.data) {
+      return this.find(value, root.right);
+    } else {
+      return this.find(value, root.left);
+    }
   }
 }
