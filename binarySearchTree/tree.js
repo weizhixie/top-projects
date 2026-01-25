@@ -202,4 +202,25 @@ export class Tree {
       return this.depth(value, root.left, depth + 1);
     }
   }
+
+  isBalanced() {
+    return this.isBalancedRecur(this.root) !== -1;
+  }
+
+  isBalancedRecur(root) {
+    if (root === null) return 0;
+
+    const leftHeight = this.isBalancedRecur(root.left);
+    const rightHeight = this.isBalancedRecur(root.right);
+
+    if (
+      leftHeight === -1 ||
+      rightHeight === -1 ||
+      Math.abs(leftHeight - rightHeight) > 1
+    ) {
+      return -1;
+    }
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
