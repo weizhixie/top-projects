@@ -223,4 +223,10 @@ export class Tree {
 
     return Math.max(leftHeight, rightHeight) + 1;
   }
+
+  rebalance() {
+    const newTree = [];
+    this.inOrderForEach((node) => newTree.push(node.data));
+    this.root = this.buildTree(newTree);
+  }
 }
