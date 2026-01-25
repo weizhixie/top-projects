@@ -103,4 +103,45 @@ export class Tree {
       return this.find(value, root.left);
     }
   }
+
+  levelOrderForEachUsingIteration(callback) {
+    if (typeof callback !== "function")
+      throw new Error("Callback function is required");
+    if (this.root === null) return;
+
+    const queue = [];
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+      const current = queue.shift();
+
+      callback(current);
+
+      if (current.left !== null) queue.push(current.left);
+      if (current.right !== null) queue.push(current.right);
+    }
+  }
+
+  levelOrderForEachUsingRecursion(callback) {
+    if (typeof callback !== "function")
+      throw new Error("Callback function is required");
+    if (this.root === null) return;
+
+    const queue = [];
+    queue.push(this.root);
+
+    this.levelOrderForEachRecur(callback, queue);
+  }
+
+  levelOrderForEachRecur(callback, queue) {
+    if (queue.length === 0) return;
+
+    const current = queue.shift();
+    callback(current);
+
+    if (current.left !== null) queue.push(current.left);
+    if (current.right !== null) queue.push(current.right);
+
+    this.levelOrderForEachRecur(callback, queue);
+  }
 }
