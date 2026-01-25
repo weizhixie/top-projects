@@ -174,4 +174,32 @@ export class Tree {
     this.postOrderForEach(callback, root.right);
     callback(root);
   }
+
+  height(value) {
+    const root = this.find(value);
+    if (root === null) return null;
+
+    return this.heightRecur(root);
+  }
+
+  heightRecur(root) {
+    if (root === null) return -1;
+
+    const leftHeight = this.heightRecur(root.left);
+    const rightHeight = this.heightRecur(root.right);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  depth(value, root = this.root, depth = 0) {
+    if (root === null) return null;
+
+    if (value === root.data) return depth;
+
+    if (value > root.data) {
+      return this.depth(value, root.right, depth + 1);
+    } else {
+      return this.depth(value, root.left, depth + 1);
+    }
+  }
 }
